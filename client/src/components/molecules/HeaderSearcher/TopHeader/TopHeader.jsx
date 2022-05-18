@@ -4,12 +4,14 @@ import Searcher from "../../../atoms/Searcher/Searcher";
 import { getProductsBySearch } from "./../../../../api/items";
 import "./TopHeader.scss";
 
-const TopHeader = () => {
+const TopHeader = ({ setProductList }) => {
   const [search, setSearch] = useState("");
 
   const onSearch = async () => {
     console.log("Realizando busqueda");
-    console.log(await getProductsBySearch(search));
+    const response = await getProductsBySearch(search.replace(" ", "-"));
+    const products = response.results;
+    setProductList && setProductList(products);
   };
 
   return (

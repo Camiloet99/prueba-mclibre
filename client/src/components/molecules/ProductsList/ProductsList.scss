@@ -1,0 +1,11 @@
+.mc__product-list {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 0;
+  }
+}

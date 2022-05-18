@@ -1,10 +1,14 @@
+@import "./../../../utils/constants.scss";
+
 .mc__searcher {
   width: 60%;
   display: flex;
   position: relative;
   flex-direction: row;
   &__input-search {
+    background-color: #eee;
     padding: 11px 12px;
+    font-size: 14px;
     width: 100%;
     border-radius: 4px;
     border: 1.2px solid lightgray;
@@ -17,8 +21,8 @@
     }
   }
   &__logo {
-    transition: .3s all;
-    background-color: #dfdfdf;
+    transition: 0.3s all;
+    background-color: $color-soft-gray;
     align-self: center;
     padding: 7.5px;
     border-top-right-radius: 4px;
