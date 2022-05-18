@@ -1,0 +1,1 @@
+export const SEARCHER_PLACEHOLDER = "Nunca dejes de buscar"
