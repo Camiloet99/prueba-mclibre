@@ -19,7 +19,6 @@ export const HomeBody = () => {
     };
     const searchedElement = searchParams.get("search");
     if (searchedElement) {
-      console.log(searchedElement);
       getProductsFromQueryParams(searchedElement);
     }
   }, [searchParams, setProducts]);
