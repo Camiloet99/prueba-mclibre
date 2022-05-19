@@ -9,8 +9,7 @@ import "./TopHeader.scss";
 const TopHeader = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const { setProducts, setSearchedItem } =
-    useContext(ProductContext);
+  const { setProducts, setSearchedItem } = useContext(ProductContext);
 
   const onSearch = async () => {
     const searchedProduct = search.replace(" ", "-");
@@ -20,10 +19,15 @@ const TopHeader = () => {
     navigate(`/items?search=${searchedProduct}`);
   };
 
+  const handleOnLogoClick = () => {
+    setSearchedItem("");
+    setProducts([]);
+  };
+
   return (
     <div className="mc__top-header__wrapper">
       <div className="mc__top-header__wrapper__content">
-        <Link to="/">
+        <Link to="/" onClick={handleOnLogoClick}>
           <img
             src={mcLogo}
             alt="logo mercadolibre"

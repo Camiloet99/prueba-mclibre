@@ -18,7 +18,7 @@ app.get("/api/items", async (req, res) => {
 });
 
 app.get("/api/items/:id", async (req, res) => {
-  const { id } = req;
+  const { id } = req.params;
   await itemController
     .getItemsById(id)
     .then((data) => {

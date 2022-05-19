@@ -1,3 +1,26 @@
+function parseProduct(product, productDescription) {
+  return {
+    author: {
+      name: "",
+      lastname: "",
+    },
+    item: {
+      id: product.id,
+      title: product.title,
+      price: {
+        currency: product.currency_id,
+        amount: Math.trunc(product.price),
+        decimals: (product.price % 1).toFixed(2).substring(2),
+      },
+      picture: product.thumbnail,
+      condition: product.condition,
+      free_shipping: product.shipping?.free_shipping,
+      sold_quantity: product.sold_quantity,
+      description: productDescription,
+    },
+  };
+}
+
 function parseProductResponse(product) {
   return {
     id: product.id,
@@ -47,10 +70,4 @@ function parseProducts(products) {
   return responseArray;
 }
 
-function parseProduct(item, itemDescription) {
-  return {
-    hola: "hola",
-  };
-}
-
-module.exports = { parseProducts };
+module.exports = { parseProducts, parseProduct };

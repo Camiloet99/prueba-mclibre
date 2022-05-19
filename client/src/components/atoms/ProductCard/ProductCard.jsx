@@ -3,8 +3,8 @@ import { numberToCurrency } from "../../../utils/parsers/productParsers";
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ image, price, description, icon, author, currency }) => {
-  const route = `/${description.replace(" ", "-")}`;
+const ProductCard = ({ image, price, description, id, author, currency }) => {
+  const route = `/items/${id}`;
 
   return (
     <li className="mc__product-card">

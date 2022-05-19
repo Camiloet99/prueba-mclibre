@@ -18,8 +18,8 @@ const getItemsBySearch = async (search) => {
 
 const getItemsById = async (id) => {
   const idToSearch = id;
-  const firstUrl = `https://api.mercadolibre.com/items/${id}`;
-  const secondUrl = `https://api.mercadolibre.com/items/${id}/description`;
+  const firstUrl = `https://api.mercadolibre.com/items/${idToSearch}`;
+  const secondUrl = `https://api.mercadolibre.com/items/${idToSearch}/description`;
   try {
     const firstResponse = (await axios.get(firstUrl)).data;
     const secondResponse = (await axios.get(secondUrl)).data;

@@ -1,0 +1,18 @@
+@import "./../../../utils/constants.scss";
+
+.mc__button {
+  border: none;
+  height: 40px;
+  color: white;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  transition: 0.3s all;
+  &.primary {
+    background-color: $color-mc-primary-blue;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-mc-dark-blue;
+    }
+  }
+}
