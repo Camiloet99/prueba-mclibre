@@ -16,7 +16,7 @@ const ProductCard = ({ image, price, description, icon, author, currency }) => {
       <div className="mc__product-card__description">
         <div className="mc__product-card__description__main">
           <span className="mc__product-card__description__main__price">
-            {numberToCurrency(price, currency)}
+            {numberToCurrency(price.amount, price.decimals, currency)}
           </span>
           <div className="mc__product-card__description__main__text">
             <Link to={route}>

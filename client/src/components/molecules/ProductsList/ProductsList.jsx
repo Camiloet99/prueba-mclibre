@@ -4,20 +4,20 @@ import ProductCard from "../../atoms/ProductCard/ProductCard";
 import "./ProductsList.scss";
 
 const ProductsList = () => {
-  const { products } = useContext(ProductContext);
+  const { products, listProducts } = useContext(ProductContext);
 
   return (
     <ol className="mc__product-list__container">
-      {products &&
-        products.map((product) => {
+      {listProducts &&
+        listProducts.map((product) => {
           return (
             <ProductCard
               key={product.id}
               description={product.title}
               price={product.price}
-              image={product.thumbnail}
+              image={product.picture}
               author={product.seller?.eshop?.nick_name}
-              currency={product.currency_id}
+              currency={product.price.currency}
             />
           );
         })}

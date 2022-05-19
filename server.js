@@ -17,4 +17,16 @@ app.get("/api/items", async (req, res) => {
     });
 });
 
+app.get("/api/items/:id", async (req, res) => {
+  const { id } = req;
+  await itemController
+    .getItemsById(id)
+    .then((data) => {
+      res.send(data).status(200);
+    })
+    .catch((e) => {
+      console.log("e", e);
+    });
+});
+
 app.listen(port, () => console.log(`Server is up at port ${port}.`));

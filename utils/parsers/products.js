@@ -1,8 +1,23 @@
+function parseProductResponse(product) {
+  return {
+    id: product.id,
+    domain_id: product.domain_id,
+    title: product.title,
+    picture: product.thumbnail,
+    condition: product.attributes?.find(
+      (attribute) => attribute.id === "ITEM_CONDITION"
+    )?.value_name,
+    free_shipping: product.shipping?.free_shipping,
+    price: {
+      currency: product.currency_id,
+      amount: Math.trunc(product.price),
+      decimals: (product.price % 1).toFixed(2).substring(2),
+    },
+  };
+}
+
 function parseProducts(products) {
   let responseArray = [];
-  /* products.results.forEach((element) => {
-    responseArray.push(element);
-  }); */
   products.results.forEach((product) => {
     if (
       !responseArray.some((element) =>
@@ -32,23 +47,9 @@ function parseProducts(products) {
   return responseArray;
 }
 
-const logger = (product) => {
-  product.results.forEach((element) => {
-    console.log(element.id);
-  });
-};
-
-function parseProductResponse(product) {
+function parseProduct(item, itemDescription) {
   return {
-    id: product.id,
-    domain_id: product.domain_id,
-    title: product.title,
-    image: product.thumbnail,
-    price: {
-      currency: product.currency_id,
-      amount: Math.trunc(product.price),
-      decimals: (product.price % 1).toFixed(2).substring(2),
-    },
+    hola: "hola",
   };
 }
 

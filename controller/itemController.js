@@ -16,4 +16,21 @@ const getItemsBySearch = async (search) => {
   }
 };
 
-module.exports = { getItemsBySearch };
+const getItemsById = async (id) => {
+  const idToSearch = id;
+  const firstUrl = `https://api.mercadolibre.com/items/${id}`;
+  const secondUrl = `https://api.mercadolibre.com/items/${id}/description`;
+  try {
+    const firstResponse = (await axios.get(firstUrl)).data;
+    const secondResponse = (await axios.get(secondUrl)).data;
+    const parsedData = parser.parseProduct(firstResponse, secondResponse);
+    return parsedData;
+  } catch (err) {
+    console.log(err);
+    return {
+      message: err,
+    };
+  }
+};
+
+module.exports = { getItemsBySearch, getItemsById };

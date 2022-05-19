@@ -4,24 +4,26 @@ import ProductsList from "../../molecules/ProductsList/ProductsList";
 import { ProductContext } from "./../../../context/ProductsContext";
 import { useSearchParams } from "react-router-dom";
 import { getProductsBySearch } from "./../../../api/items";
+import { productsToProductsList } from "./../../../utils/parsers/productParsers";
 import "./HomeBody.scss";
 
 export const HomeBody = () => {
   const [searchParams] = useSearchParams();
-  const { setProducts } = useContext(ProductContext);
+  const { setProducts, searchedItem, setListProducts } =
+    useContext(ProductContext);
 
   useEffect(() => {
     const getProductsFromQueryParams = async (productToSearch) => {
       const response = await getProductsBySearch(
         productToSearch.replace(" ", "-")
       );
-      setProducts(response.results);
+      setProducts && setProducts(response);
     };
     const searchedElement = searchParams.get("search");
-    if (searchedElement) {
+    if (searchedElement !== searchedItem && searchedElement !== null) {
       getProductsFromQueryParams(searchedElement);
     }
-  }, [searchParams, setProducts]);
+  }, [searchParams, setProducts, searchedItem, setListProducts]);
 
   return (
     <div className="mc__homebody">

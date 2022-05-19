@@ -9,13 +9,15 @@ import "./TopHeader.scss";
 const TopHeader = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const { setProducts } = useContext(ProductContext);
+  const { setProducts, setSearchedItem } =
+    useContext(ProductContext);
 
   const onSearch = async () => {
     const searchedProduct = search.replace(" ", "-");
-    navigate(`/items?search=${searchedProduct}`);
-    const response = await getProductsBySearch(searchedProduct).results;
+    setSearchedItem(searchedProduct);
+    const response = await getProductsBySearch(searchedProduct);
     setProducts && setProducts(response);
+    navigate(`/items?search=${searchedProduct}`);
   };
 
   return (
