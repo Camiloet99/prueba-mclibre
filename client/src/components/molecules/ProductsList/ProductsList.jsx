@@ -4,7 +4,7 @@ import ProductCard from "../../atoms/ProductCard/ProductCard";
 import "./ProductsList.scss";
 
 const ProductsList = () => {
-  const { products, listProducts } = useContext(ProductContext);
+  const { listProducts } = useContext(ProductContext);
 
   return (
     <ol className="mc__product-list__container">

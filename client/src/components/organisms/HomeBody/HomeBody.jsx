@@ -4,7 +4,6 @@ import ProductsList from "../../molecules/ProductsList/ProductsList";
 import { ProductContext } from "./../../../context/ProductsContext";
 import { useSearchParams } from "react-router-dom";
 import { getProductsBySearch } from "./../../../api/items";
-import { productsToProductsList } from "./../../../utils/parsers/productParsers";
 import "./HomeBody.scss";
 
 export const HomeBody = () => {
