@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProductContext } from "../../../context/ProductsContext";
 import ProductCard from "../../atoms/ProductCard/ProductCard";
 import "./ProductsList.scss";
 
-const ProductsList = ({ products }) => {
-  console.log(products);
+const ProductsList = () => {
+  const { products } = useContext(ProductContext);
+
   return (
     <ol className="mc__product-list__container">
       {products &&
         products.map((product) => {
           return (
             <ProductCard
+              key={product.id}
               description={product.title}
               price={product.price}
               image={product.thumbnail}

@@ -1,17 +1,25 @@
 @import "../../../../utils/constants.scss";
 
-.mc__top-header__container {
+.mc__top-header__wrapper {
   background-color: $color-mc-main;
   height: 60px;
   width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.75);
-  &__logo {
-    width: 60px;
-    height: 40px;
-    margin-right: 25px;
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    justify-content: center;
+    &__logo {
+      width: 60px;
+      height: 40px;
+      margin-right: 25px;
+    }
   }
 }
