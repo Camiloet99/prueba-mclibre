@@ -9,6 +9,7 @@ function App() {
       <main className="app__container">
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/items" exact element={<Home />} />
         </Routes>
       </main>
     </Router>

@@ -4,8 +4,9 @@
   padding: 10px 20px;
   border-bottom: thin solid #eee;
   height: 170px;
-  
   &__item-image {
+    display: flex;
+    align-items: center;
     padding: 0 25px;
     a {
       width: 150px;
@@ -15,7 +16,7 @@
       justify-content: center;
     }
     img {
-      border-radius: 10px;
+      border-radius: 5px;
       max-width: 100%;
       min-width: 150px;
       min-height: auto;

@@ -9,10 +9,6 @@ export const ProductContext = createContext(defaultContext);
 export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState(defaultContext.products);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   return (
     <ProductContext.Provider
       value={{

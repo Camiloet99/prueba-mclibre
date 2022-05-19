@@ -3,17 +3,19 @@ import mcLogo from "../../../../assets/images/home/mercadolibre_logo.png";
 import { ProductContext } from "../../../../context/ProductsContext";
 import Searcher from "../../../atoms/Searcher/Searcher";
 import { getProductsBySearch } from "./../../../../api/items";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./TopHeader.scss";
 
 const TopHeader = () => {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const { setProducts } = useContext(ProductContext);
 
   const onSearch = async () => {
-    const response = await getProductsBySearch(search.replace(" ", "-"));
-    const products = response.results;
-    setProducts && setProducts(products);
+    const searchedProduct = search.replace(" ", "-");
+    navigate(`/items?search=${searchedProduct}`);
+    const response = await getProductsBySearch(searchedProduct).results;
+    setProducts && setProducts(response);
   };
 
   return (
