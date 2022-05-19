@@ -1,23 +1,18 @@
 function parseProducts(products) {
-  let responseArray = [{}];
+  let responseArray = [];
   /* products.results.forEach((element) => {
     responseArray.push(element);
   }); */
   products.results.forEach((product) => {
-    const productAuthor = product.seller;
-    console.log(productAuthor);
     if (
-      !responseArray.some(
-        (element) =>
-          element?.author?.name === productAuthor.name &&
-          element?.author?.lastname === productAuthor.lastname
+      !responseArray.some((element) =>
+        element.items.some((item) => item.id === product.id)
       )
     ) {
-      console.log("entra");
       let productsList = [];
       let categoriesList = [];
-      const productsByAuthor = products.filter(
-        (productByUser) => productByUser.seller?.id === productAuthor.id
+      const productsByAuthor = products.results.filter(
+        (productByUser) => productByUser.seller?.id === product.seller.id
       );
       productsByAuthor.forEach((filteredProduct) => {
         productsList.push(parseProductResponse(filteredProduct));
@@ -25,14 +20,13 @@ function parseProducts(products) {
       });
       responseArray.push({
         author: {
-          name: productAuthor.name,
-          lastname: productAuthor.lastname,
+          name: product.seller.name,
+          lastname: product.seller.lastname,
+          nickname: product.seller.eshop?.nick_name,
         },
         categories: categoriesList,
         items: productsList,
       });
-    } else {
-      console.log("no entra");
     }
   });
   return responseArray;
@@ -47,7 +41,9 @@ const logger = (product) => {
 function parseProductResponse(product) {
   return {
     id: product.id,
+    domain_id: product.domain_id,
     title: product.title,
+    image: product.thumbnail,
     price: {
       currency: product.currency_id,
       amount: Math.trunc(product.price),
