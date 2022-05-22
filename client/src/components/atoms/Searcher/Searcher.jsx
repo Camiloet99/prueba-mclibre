@@ -3,7 +3,7 @@ import { SEARCHER_PLACEHOLDER } from "./../../../constants/Home/HomeConstants";
 import searchLogo from "./../../../assets/images/home/search_logo.png";
 import "./Searcher.scss";
 
-const Searcher = ({ onSubmit, setSearch }) => {
+const Searcher = ({ onSubmit, setSearch, inputRef }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     onSubmit ? onSubmit() : console.log("error");
@@ -19,6 +19,7 @@ const Searcher = ({ onSubmit, setSearch }) => {
         type="text"
         name="items"
         placeholder={SEARCHER_PLACEHOLDER}
+        ref={inputRef}
         className="mc__searcher__input-search"
         onChange={handleOnChangeSearch}
       />

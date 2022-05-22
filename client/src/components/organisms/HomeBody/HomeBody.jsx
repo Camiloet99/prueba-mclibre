@@ -4,6 +4,7 @@ import ProductsList from "../../molecules/ProductsList/ProductsList";
 import { ProductContext } from "./../../../context/ProductsContext";
 import { useSearchParams } from "react-router-dom";
 import { getProductsBySearch } from "./../../../api/items";
+import { BreadCrumb } from "./../../molecules/BreadCrumb/BreadCrumb"
 import "./HomeBody.scss";
 
 export const HomeBody = () => {
@@ -27,6 +28,7 @@ export const HomeBody = () => {
   return (
     <div className="mc__homebody">
       <TopHeader />
+      <BreadCrumb />
       <ProductsList />
     </div>
   );

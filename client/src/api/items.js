@@ -1,9 +1,12 @@
+import { ITEMS_SEARCH, ITEMS_DETAILS } from "./../constants/ApiEndpoints"
+import {client} from "./axiosClient"
+
 export async function getProductsBySearch(search) {
-  const response = fetch(`/api/items?q=${search}`).then((res) => res.json());
+  const response = fetch(`${ITEMS_SEARCH}${search}`).then((res) => res.json());
   return response;
 }
 
 export async function getProductDetailsById(productId) {
-  const response = fetch(`/api/items/${productId}`).then((res) => res.json());
+  const response = fetch(`${ITEMS_DETAILS}${productId}`).then((res) => res.json());
   return response;
 }

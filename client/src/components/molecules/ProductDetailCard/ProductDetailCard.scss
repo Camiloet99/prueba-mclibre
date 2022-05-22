@@ -11,6 +11,9 @@
   }
   &__content {
     padding: 35px;
+    &__text{
+      margin-top: 15px;
+    }
   }
   &__description{
     margin-top: 40px;
@@ -41,6 +44,14 @@
       display: flex;
       flex-direction: column;
       .card-details {
+        &__shipping{
+          margin-top: 10px;
+          display: block;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 1;
+          color: #00a650;
+        }
         &__subtitle {
           margin: 7px 0;
         }

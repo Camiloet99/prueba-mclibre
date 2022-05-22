@@ -14,8 +14,6 @@ const ProductDetailCard = ({ productDetails }) => {
     description,
   } = productDetails.item;
 
-  console.log(productDetails);
-
   return (
     <div className="mc__product-detail-card__wrapper">
       <div className="mc__product-detail-card__content">
@@ -25,9 +23,8 @@ const ProductDetailCard = ({ productDetails }) => {
           </div>
           <div className="mc__product-detail-card__top__details">
             <div className="card-details__subtitle">
-              <span>{`${
-                condition.charAt(0).toUpperCase() + condition.slice(1)
-              } | ${sold_quantity} vendidos.`}</span>
+              <span>{`${condition.charAt(0).toUpperCase() + condition.slice(1)
+                } | ${sold_quantity} vendidos.`}</span>
             </div>
             <div className="card-details__title">
               <h1>{title}</h1>
@@ -45,7 +42,7 @@ const ProductDetailCard = ({ productDetails }) => {
             </div>
             {free_shipping && (
               <div className="card-details__shipping">
-                <span>{"Envío gratis."}</span>
+                <span>{"Envío gratis"}</span>
               </div>
             )}
             <form action="" className="card-details__buy-button">
@@ -58,7 +55,7 @@ const ProductDetailCard = ({ productDetails }) => {
             <div className="mc__product-detail-card__description__content">
               <h2>Descripción del producto:</h2>
               <div className="mc__product-detail-card__description__content__text">
-                <p>{description.plain_text}</p>
+                {description.plain_text.split("\n").map((paragraph, index) => {return <p key={paragraph + index}>{paragraph}</p> })}
               </div>
             </div>
           )}

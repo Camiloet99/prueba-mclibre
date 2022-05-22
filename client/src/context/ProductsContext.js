@@ -4,6 +4,7 @@ import { productsToProductsList } from "./../utils/parsers/productParsers";
 const defaultContext = {
   products: [],
   listProducts: [],
+  searchedItem: ""
 };
 
 export const ProductContext = createContext(defaultContext);
@@ -11,10 +12,17 @@ export const ProductContext = createContext(defaultContext);
 export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState(defaultContext.products);
   const [listProducts, setListProducts] = useState(defaultContext.listProducts);
-  const [searchedItem, setSearchedItem] = useState("");
+  const [searchedItem, setSearchedItem] = useState(defaultContext.searchedItem);
+
+  const clearContext = () => {
+    setProducts(defaultContext.products)
+    setListProducts(defaultContext.listProducts)
+    setSearchedItem(defaultContext.searchedItem)
+  }
 
   useEffect(() => {
-    if (products.length) setListProducts(productsToProductsList(products));
+    if (products.length > 0) setListProducts(productsToProductsList(products));
+    else setListProducts(defaultContext.listProducts)
   }, [products]);
 
   return (
@@ -26,6 +34,7 @@ export const ProductContextProvider = ({ children }) => {
         searchedItem,
         setSearchedItem,
         setListProducts,
+        clearContext
       }}
       displayName="Product Context"
     >

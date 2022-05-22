@@ -3,7 +3,7 @@ import { numberToCurrency } from "../../../utils/parsers/productParsers";
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ image, price, description, id, author, currency }) => {
+const ProductCard = ({ image, price, description, id, author, currency, shipping }) => {
   const route = `/items/${id}`;
 
   return (
@@ -22,6 +22,9 @@ const ProductCard = ({ image, price, description, id, author, currency }) => {
             <Link to={route}>
               <span>{description}</span>
             </Link>
+            {shipping &&
+              <span className="mc__product-card__description__main__text__shipping">Envío gratis</span>
+            }
           </div>
         </div>
         <div className="mc__product-card__description__seller">

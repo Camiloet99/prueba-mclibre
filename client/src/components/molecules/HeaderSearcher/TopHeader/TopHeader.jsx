@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import mcLogo from "../../../../assets/images/home/mercadolibre_logo.png";
 import { ProductContext } from "../../../../context/ProductsContext";
 import Searcher from "../../../atoms/Searcher/Searcher";
@@ -9,7 +9,8 @@ import "./TopHeader.scss";
 const TopHeader = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const { setProducts, setSearchedItem } = useContext(ProductContext);
+  const inputRef = useRef()
+  const { setProducts, setSearchedItem, clearContext } = useContext(ProductContext);
 
   const onSearch = async () => {
     const searchedProduct = search.replace(" ", "-");
@@ -20,8 +21,10 @@ const TopHeader = () => {
   };
 
   const handleOnLogoClick = () => {
-    setSearchedItem("");
-    setProducts([]);
+    inputRef.current.value = ""
+    navigate("/")
+    setSearch("")
+    clearContext()
   };
 
   return (
@@ -34,7 +37,7 @@ const TopHeader = () => {
             className="mc__top-header__wrapper__content__logo"
           />
         </Link>
-        <Searcher onSubmit={onSearch} setSearch={setSearch} />
+        <Searcher onSubmit={onSearch} setSearch={setSearch} inputRef={inputRef} />
       </div>
     </div>
   );

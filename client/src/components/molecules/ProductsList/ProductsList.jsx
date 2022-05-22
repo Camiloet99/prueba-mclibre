@@ -17,8 +17,9 @@ const ProductsList = () => {
               description={product.title}
               price={product.price}
               image={product.picture}
-              author={product.seller?.eshop?.nick_name}
+              author={product.author?.nickname}
               currency={product.price.currency}
+              shipping={product.free_shipping}
             />
           );
         })}
