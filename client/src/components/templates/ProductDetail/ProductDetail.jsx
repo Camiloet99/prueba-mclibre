@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import TopHeader from "./../../molecules/HeaderSearcher/TopHeader/TopHeader";
 import ProductDetailCard from "./../../molecules/ProductDetailCard/ProductDetailCard";
 import { getProductDetailsById } from "./../../../api/items";
+import BreadCrumb from "../../atoms/BreadCrumb/BreadCrumb";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
@@ -20,6 +21,7 @@ const ProductDetail = () => {
   return (
     <div className="mc__product-detail__wrapper">
       <TopHeader />
+      <BreadCrumb />
       {productDetails && <ProductDetailCard productDetails={productDetails} />}
     </div>
   );

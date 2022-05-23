@@ -4,7 +4,7 @@ import ProductsList from "../../molecules/ProductsList/ProductsList";
 import { ProductContext } from "./../../../context/ProductsContext";
 import { useSearchParams } from "react-router-dom";
 import { getProductsBySearch } from "./../../../api/items";
-import { BreadCrumb } from "./../../molecules/BreadCrumb/BreadCrumb";
+import BreadCrumb from "./../../atoms/BreadCrumb/BreadCrumb";
 import "./HomeBody.scss";
 
 export const HomeBody = () => {
@@ -19,8 +19,11 @@ export const HomeBody = () => {
       );
       setProducts && setProducts(response);
     };
-    const searchedElement = searchParams.get("search");
+    let searchedElement = searchParams.get("search");
     if (searchedElement !== searchedItem && searchedElement !== null) {
+      searchedElement = searchedElement
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
       getProductsFromQueryParams(searchedElement);
     }
   }, [searchParams, setProducts, searchedItem, setListProducts]);

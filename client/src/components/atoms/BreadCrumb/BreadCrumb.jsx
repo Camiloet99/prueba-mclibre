@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProductContext } from "./../../../context/ProductsContext";
+import { ProductContext } from "../../../context/ProductsContext";
 import { Link } from "react-router-dom";
 import "./BreadCrumb.scss";
 
-export const BreadCrumb = () => {
+const BreadCrumb = () => {
   const { categories } = useContext(ProductContext);
   const [mostSearchedCategory, setMostSearchedCategory] = useState("");
 
@@ -26,3 +26,5 @@ export const BreadCrumb = () => {
     </div>
   );
 };
+
+export default BreadCrumb;

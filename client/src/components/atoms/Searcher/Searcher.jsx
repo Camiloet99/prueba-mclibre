@@ -10,7 +10,7 @@ const Searcher = ({ onSubmit, setSearch, inputRef }) => {
   };
 
   const handleOnChangeSearch = (e) => {
-    setSearch(e.target.value);
+    setSearch(e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   };
 
   return (
