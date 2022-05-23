@@ -9,22 +9,25 @@ import "./TopHeader.scss";
 const TopHeader = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const inputRef = useRef()
-  const { setProducts, setSearchedItem, clearContext } = useContext(ProductContext);
+  const inputRef = useRef();
+  const { setProducts, setSearchedItem, clearContext, searchedItem } =
+    useContext(ProductContext);
 
   const onSearch = async () => {
     const searchedProduct = search.replace(" ", "-");
-    setSearchedItem(searchedProduct);
-    const response = await getProductsBySearch(searchedProduct);
-    setProducts && setProducts(response);
-    navigate(`/items?search=${searchedProduct}`);
+    if (searchedItem !== searchedProduct) {
+      navigate(`/items?search=${searchedProduct}`);
+      setSearchedItem(searchedProduct);
+      const response = await getProductsBySearch(searchedProduct);
+      setProducts && setProducts(response);
+    }
   };
 
   const handleOnLogoClick = () => {
-    inputRef.current.value = ""
-    navigate("/")
-    setSearch("")
-    clearContext()
+    inputRef.current.value = "";
+    navigate("/");
+    setSearch("");
+    clearContext();
   };
 
   return (
@@ -37,7 +40,11 @@ const TopHeader = () => {
             className="mc__top-header__wrapper__content__logo"
           />
         </Link>
-        <Searcher onSubmit={onSearch} setSearch={setSearch} inputRef={inputRef} />
+        <Searcher
+          onSubmit={onSearch}
+          setSearch={setSearch}
+          inputRef={inputRef}
+        />
       </div>
     </div>
   );

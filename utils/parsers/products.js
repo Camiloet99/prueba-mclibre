@@ -1,9 +1,8 @@
+const constantData = require("./../constantData");
+
 function parseProduct(product, productDescription) {
   return {
-    author: {
-      name: "",
-      lastname: "",
-    },
+    author: constantData.author,
     item: {
       id: product.id,
       title: product.title,
@@ -39,35 +38,27 @@ function parseProductResponse(product) {
   };
 }
 
+function getNameListFromCategories(categories) {
+  const categoryNameList = [];
+  if (categories)
+    categories?.forEach((category) => categoryNameList.push(category.name));
+  return categoryNameList;
+}
+
 function parseProducts(products) {
-  let responseArray = [];
+  let productList = [];
   products.results.forEach((product) => {
-    if (
-      !responseArray.some((element) =>
-        element.items.some((item) => item.id === product.id)
-      )
-    ) {
-      let productsList = [];
-      let categoriesList = [];
-      const productsByAuthor = products.results.filter(
-        (productByUser) => productByUser.seller?.id === product.seller.id
-      );
-      productsByAuthor.forEach((filteredProduct) => {
-        productsList.push(parseProductResponse(filteredProduct));
-        categoriesList.push(filteredProduct.category_id);
-      });
-      responseArray.push({
-        author: {
-          name: product.seller.name,
-          lastname: product.seller.lastname,
-          nickname: product.seller.eshop?.nick_name,
-        },
-        categories: categoriesList,
-        items: productsList,
-      });
-    }
+    productList.push(parseProductResponse(product));
   });
-  return responseArray;
+  return {
+    author: constantData.author,
+    categories: getNameListFromCategories(
+      products.available_filters
+        ?.find((filter) => filter.id === "category")
+        ?.values.sort((a, b) => b.results - a.results)
+    ),
+    items: productList,
+  };
 }
 
 module.exports = { parseProducts, parseProduct };

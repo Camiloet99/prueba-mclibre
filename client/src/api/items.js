@@ -1,5 +1,4 @@
 import { ITEMS_SEARCH, ITEMS_DETAILS } from "./../constants/ApiEndpoints"
-import {client} from "./axiosClient"
 
 export async function getProductsBySearch(search) {
   const response = fetch(`${ITEMS_SEARCH}${search}`).then((res) => res.json());

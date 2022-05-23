@@ -1,7 +1,15 @@
+@import "./../../../utils/constants.scss";
+
 .mc__breadcrumb {
-    &__wrapper {
-        width: 85%;
-        max-width: 1100px;
-        margin: 0 auto;
+  &__wrapper {
+    width: 85%;
+    max-width: 1100px;
+    margin: 20px auto;
+    a {
+      text-decoration: none;
+      &:hover {
+        color: $color-mc-dark-blue;
+      }
     }
+  }
 }

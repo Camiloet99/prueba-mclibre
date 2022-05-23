@@ -7,7 +7,7 @@ const ProductsList = () => {
   const { listProducts } = useContext(ProductContext);
 
   return (
-    <ol className="mc__product-list__container">
+    <ol className="mc__product-list__wrapper">
       {listProducts &&
         listProducts.map((product) => {
           return (
